@@ -1,0 +1,61 @@
+.hero {
+  min-height: 40vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+    url(../../assets/images/slide9.jpg) center/cover no-repeat;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+  position: relative;
+}
+
+.quotes {
+  width: 80%;
+  max-width: 875px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.singleQuote {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.singleQuote p {
+  color: rgb(221, 237, 252);
+  font-family: "Sunshiney", cursive;
+  font-size: 1.7rem;
+  letter-spacing: 1.5px;
+  font-weight: lighter;
+}
+
+.singleQuote h3 {
+  display: inline-block;
+  align-self: flex-end;
+  margin: 1rem 20% 0 0;
+  line-height: 2;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  color: #e3fc03;
+  text-transform: capitalize;
+}
+
+@media (max-width: 520px) {
+  .quotes {
+    width: 90%;
+  }
+
+  .singleQuote p {
+    font-size: 1rem;
+  }
+
+  .singleQuote h3 {
+    font-size: 0.7rem;
+  }
+}
