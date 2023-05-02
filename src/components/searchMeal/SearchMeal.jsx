@@ -1,12 +1,46 @@
-import "./searchMeal.css";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useGlobalContext } from "../../Context";
+import "./searchMeal.css";
 
 const SearchMeal = () => {
+  const [input, setInput] = useState("");
+
+  const { setSearchTerm } = useGlobalContext();
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const clearSearch = () => {
+    if (input.length === 0) {
+      setSearchTerm("");
+    }
+  };
+
+  useEffect(() => {
+    clearSearch();
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(input.trim());
+    setInput(input.trim());
+  };
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+    >
       <div className="input">
-        <input type="text" placeholder="Search your favorite meals here. . . ." />
-      <FaSearch />
+        <input
+          type="text"
+          placeholder="Search your favorite meals here. . . ."
+          onChange={(e) => handleChange(e)}
+          value={input}
+        />
+        <FaSearch />
       </div>
       <button type="submit">Search</button>
     </form>

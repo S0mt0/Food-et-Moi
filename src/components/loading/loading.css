@@ -1,0 +1,17 @@
+.load__Container {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.load__Container img {
+  width: 60px;
+}
+
+.load__Container p {
+  color: #3f3f3a;
+  font-size: 0.9rem;
+}

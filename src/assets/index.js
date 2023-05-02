@@ -13,6 +13,7 @@ export { default as slide7 } from "../assets/images/slide7.jpg";
 export { default as slide8 } from "../assets/images/slide8.jpg";
 export { default as slide9 } from "../assets/images/slide9.jpg";
 export { default as texture1 } from "../assets/images/texture1.png";
+export { default as chef1 } from "../assets/images/chef1.png";
 
 // Loaders
 export { default as loader1 } from "../assets/loaders/loader1.svg";

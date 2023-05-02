@@ -5,43 +5,51 @@ const AppContext = createContext(null);
 
 // The AppProvider component serves as the parent wrapper which will wrap our entire App in the index.js file  enabling every other descendant component to have access to all of its states, and functions etc.
 const AppProvider = ({ children }) => {
-  // fetch meals data on first render, and commit it to state variable, "allMeals".
-  const [allMeals, setAllMeals] = useState(
-    JSON.parse(localStorage.getItem("fetchedMeals")) || []
-  );
+  // States
+  const [allMeals, setAllMeals] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [noMeal, setNoMeal] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
-  // console.log(isFavorite);
+  // Fetch meals on first render, and commit it to state variable, "allMeals".
+  const allMealsURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
-  // allMeals fetch function
-  const fetchMeals = async () => {
-    const allMealsURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-    const check = localStorage.getItem("fetchedMeals");
-
-    if (check) {
-      setAllMeals(JSON.parse(check));
-    } else {
-      try {
-        const response = await fetch(allMealsURL);
-        const { meals } = await response.json();
+  const fetchMeals = async (url) => {
+    try {
+      const response = await fetch(url);
+      const { meals } = await response.json();
+      setLoading(false);
+      if (meals) {
         setAllMeals(meals);
-        setLoading(false);
-
-        // store to local storage after fetching data
-        localStorage.setItem("fetchedMeals", JSON.stringify(meals));
-      } catch (error) {
-        console.log(error);
+      } else {
+        setNoMeal(true);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
+
   useEffect(() => {
-    fetchMeals();
-  }, []);
+    fetchMeals(`${allMealsURL}${searchTerm}`);
+  }, [searchTerm]);
+
+  const handleFavorite = () => {
+    console.log("hello");
+  };
 
   return (
     <AppContext.Provider
-      value={{ allMeals, loading, isFavorite, setIsFavorite }}
+      value={{
+        allMeals,
+        loading,
+        setLoading,
+        searchTerm,
+        setSearchTerm,
+        noMeal,
+        setNoMeal,
+        handleFavorite,
+      }}
     >
       {children}
     </AppContext.Provider>

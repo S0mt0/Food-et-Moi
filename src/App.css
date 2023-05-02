@@ -7,8 +7,6 @@
   list-style: none;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
-  /* font-family: 'Rochester', cursive;
-font-family: 'WindSong', cursive; */
 }
 
 h1,
@@ -18,6 +16,11 @@ h4,
 h5 {
   margin: 0;
   letter-spacing: 1px;
+}
+
+img {
+  display: block;
+  width: 100%;
 }
 
 /* h1 {
@@ -32,7 +35,6 @@ h5 {
   max-width: 1240px;
 }
 
-body{
-  height: 400vh;
+body {
   background: rgb(246, 250, 252);
 }

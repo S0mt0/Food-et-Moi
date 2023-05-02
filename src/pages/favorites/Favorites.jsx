@@ -1,11 +1,7 @@
 import { Meals } from "../../components";
 
 const Favorites = () => {
-  return (
-    <div>
-      <Meals />
-    </div>
-  );
+  return <div>favorite meals</div>;
 };
 
 export default Favorites;
