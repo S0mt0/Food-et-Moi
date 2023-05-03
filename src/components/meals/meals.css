@@ -4,6 +4,12 @@
   gap: 3rem;
   margin: 2rem;
 }
+@media (max-width: 620px) {
+  .meals {
+    gap: 2rem;
+  }
+}
+
 .singleMeal {
   border-radius: 10px;
   box-shadow: 0px 0px 4px rgb(156, 168, 175);
@@ -21,6 +27,18 @@
   height: 15rem;
   border-radius: 10px 10px 0 0;
   position: relative;
+}
+.image .category {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.295);
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1;
+}
+
+.image .category span {
+  color: white;
 }
 
 .image .overlay {
@@ -63,10 +81,6 @@
   transform: scale(1.1);
 }
 
-/* .meals footer {
-  padding: 10px 0;
-} */
-
 .singleMeal footer {
   padding: 10px 20px;
   display: flex;
@@ -78,6 +92,7 @@
   text-transform: capitalize;
   font-family: "montserrat", sans-serif;
   margin-block: 5px;
+  max-width: 90%;
 }
 
 .singleMeal footer svg {

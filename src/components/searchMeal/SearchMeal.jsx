@@ -6,7 +6,7 @@ import "./searchMeal.css";
 const SearchMeal = () => {
   const [input, setInput] = useState("");
 
-  const { setSearchTerm } = useGlobalContext();
+  const { setSearchTerm, setNoMeal, searchTerm } = useGlobalContext();
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -26,6 +26,10 @@ const SearchMeal = () => {
     e.preventDefault();
     setSearchTerm(input.trim());
     setInput(input.trim());
+
+    if (searchTerm !== input) {
+      setNoMeal(false);
+    }
   };
   return (
     <form
