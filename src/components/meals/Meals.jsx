@@ -29,10 +29,8 @@ const Meals = () => {
   };
 
   const bigScreen = {
-    gridTemplateColumns: "repeat(3, minmax(15rem, 1fr))",
+    gridTemplateColumns: "repeat(3, minmax(14rem, 1fr))",
   };
-  // console.log(screenSize);
-  // console.log(allMeals);
 
   const grid = () => {
     if (allMeals.length <= 3) {

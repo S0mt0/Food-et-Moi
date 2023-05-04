@@ -46,7 +46,7 @@ const SearchMeal = () => {
         />
         <FaSearch />
       </div>
-      <button type="submit">Search</button>
+      <button type="submit">Search</button   >
     </form>
   );
 };
