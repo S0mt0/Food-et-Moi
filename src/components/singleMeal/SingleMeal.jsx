@@ -51,23 +51,29 @@ const SingleMeal = () => {
 
       <div className="Recipe__container">
         <div className="col1">
-          <h3>{mealName}</h3>
-          <div className="img__container">
-            <img src={image} alt={mealName} />
-          </div>
-          <div className="more">
-            <p>
-              category: <span>{cat}</span>
-            </p>
-            <p>
-              area: <span>{area}</span>
-            </p>
-            <p>
-              source:
-              <a href={source || "#"} target="_blank" rel="noreferrer noopener">
-                <span> read full article</span>
-              </a>
-            </p>
+          <div className="sticky">
+            <h3>{mealName}</h3>
+            <div className="img__container">
+              <img src={image} alt={mealName} />
+            </div>
+            <div className="more">
+              <p>
+                category: <span>{cat}</span>
+              </p>
+              <p>
+                area: <span>{area}</span>
+              </p>
+              <p>
+                source:
+                <a
+                  href={source || "#"}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span> read full article</span>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
         <div className="col2">

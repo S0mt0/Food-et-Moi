@@ -40,7 +40,7 @@
 
 /* scrollbar styles */
 .Recipe__container::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 .Recipe__container::-webkit-scrollbar-thumb {
@@ -57,8 +57,7 @@
   background-repeat: no-repeat;
   background-size: 80%;
   background-position: center;
-  height: 5px;
-  padding-block: 5px;
+  height: 8px;
 }
 
 .Recipe__container::-webkit-scrollbar-button:vertical:start:increment {
@@ -67,6 +66,11 @@
 
 .Recipe__container::-webkit-scrollbar-button:vertical:end:decrement {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg");
+}
+
+.Recipe__container .col1 .sticky {
+  position: sticky;
+  top: 0;
 }
 
 .Recipe__container .col1 h3 {

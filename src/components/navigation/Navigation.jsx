@@ -1,9 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 // import { MdOutlineFavoriteBorder } from "react-icons/md";
-import {  BsHeart } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 
 import { useGlobalContext } from "../../Context";
-
 
 import "./navigation.css";
 
