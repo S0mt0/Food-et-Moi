@@ -9,7 +9,8 @@ import NoMeal from "../noMeal/NoMeal";
 
 const Meals = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const { allMeals, loading, noMeal, handleFavorite } = useGlobalContext();
+  const { allMeals, loading, noMeal, handleFavorite, favorites } =
+    useGlobalContext();
 
   // Inline Style functions
   const checkSize = () => {
@@ -71,16 +72,18 @@ const Meals = () => {
             </div>
             <footer>
               <h3>{name}</h3>
-              <BsHeart title="Add to favorites" onClick={handleFavorite} />
-
-              {/* {false ? (
+              {favorites.find((meal) => id === meal.idMeal) ? (
                 <BsFillHeartFill
-                  className="red"
+                  style={{ color: "#f44336" }}
                   title="Remove from favorites"
+                  onClick={() => handleFavorite(id)}
                 />
               ) : (
-                <BsHeart title="Add to favorites" />
-              )} */}
+                <BsHeart
+                  title="Add to favorites"
+                  onClick={() => handleFavorite(id)}
+                />
+              )}
             </footer>
           </article>
         );

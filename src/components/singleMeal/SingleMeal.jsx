@@ -75,7 +75,7 @@ const SingleMeal = () => {
           <p>{steps}</p>
           <a href={yt || "#"} target="_blank" rel="noopener noreferrer">
             Also watch on YouTube <span>🤭</span>
-          </a>{" "}
+          </a>
         </div>
       </div>
       {/* <Suggestions /> */}

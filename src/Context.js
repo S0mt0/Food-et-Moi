@@ -1,4 +1,10 @@
-import { useContext, useState, useEffect, createContext } from "react";
+import {
+  useContext,
+  useState,
+  useEffect,
+  createContext,
+  useReducer,
+} from "react";
 
 // New context
 const AppContext = createContext(null);
@@ -10,6 +16,7 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [noMeal, setNoMeal] = useState(false);
+  const [isLiked, setisLiked] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
   // Fetch meals on first render, and commit it to state variable, "allMeals".
@@ -34,8 +41,25 @@ const AppProvider = ({ children }) => {
     fetchMeals(`${allMealsURL}${searchTerm}`);
   }, [searchTerm]);
 
-  const handleFavorite = () => {
-    console.log("hello");
+  const handleFavorite = (id) => {
+    const newFavorite = allMeals.find((meal) => id === meal.idMeal);
+    const checked = favorites.find((meal) => id === meal.idMeal);
+
+    if (!isLiked) {
+      if (checked) return;
+      setFavorites([...favorites, newFavorite]);
+      setisLiked(true);
+    }
+
+    if (isLiked) {
+      if (checked) {
+        const updatedFavorite = favorites.filter((meal) => meal.idMeal !== id);
+        setFavorites(updatedFavorite);
+      } else {
+        setFavorites([...favorites, newFavorite]);
+        setisLiked(true);
+      }
+    }
   };
 
   return (
@@ -49,6 +73,7 @@ const AppProvider = ({ children }) => {
         noMeal,
         setNoMeal,
         handleFavorite,
+        favorites,
       }}
     >
       {children}

@@ -1,8 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
+// import { MdOutlineFavoriteBorder } from "react-icons/md";
+import {  BsHeart } from "react-icons/bs";
+
+import { useGlobalContext } from "../../Context";
+
+
 import "./navigation.css";
 
 const Navigation = () => {
+  const { favorites } = useGlobalContext();
+
   return (
     <nav>
       <div className="container">
@@ -20,8 +27,8 @@ const Navigation = () => {
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           <p className="counter">
-            <MdOutlineFavoriteBorder />
-            <span>8</span>
+            <BsHeart />
+            {favorites.length > 0 && <span>{favorites.length}</span>}
           </p>
         </NavLink>
       </div>

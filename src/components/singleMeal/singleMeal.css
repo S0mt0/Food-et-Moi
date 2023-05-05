@@ -124,7 +124,7 @@
   text-transform: uppercase;
   font-weight: 600;
   font-family: "montserrat", sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-align: center;
   color: rgb(50, 51, 51);
 }
@@ -133,6 +133,7 @@
   color: rgb(73, 75, 75);
   font-size: 0.97rem;
   line-height: 1.6;
+  text-indent: 1.5rem;
 }
 
 .Recipe__container .col2 a {
