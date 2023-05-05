@@ -26,7 +26,7 @@
 .Recipe__container {
   position: relative;
   height: 600px;
-  overflow-y: auto;
+  overflow-y: scroll;
   width: 90%;
   max-width: 984px;
   margin: 3rem auto;
@@ -51,22 +51,22 @@
   background-color: #9da5a5e3;
   border: 2px solid rgb(161, 171, 173);
 }
-.Recipe__container::-webkit-scrollbar-button {
+/* .Recipe__container::-webkit-scrollbar-button {
   display: block;
   background-color: #9da5a5e3;
   background-repeat: no-repeat;
   background-size: 80%;
   background-position: center;
   height: 8px;
-}
+} */
 
-.Recipe__container::-webkit-scrollbar-button:vertical:start:increment {
+/* .Recipe__container::-webkit-scrollbar-button:vertical:start:increment {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg");
 }
 
 .Recipe__container::-webkit-scrollbar-button:vertical:end:decrement {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg");
-}
+} */
 
 .Recipe__container .col1 .sticky {
   position: sticky;
@@ -123,29 +123,77 @@
   object-fit: center;
 }
 
-.Recipe__container .col2 h3 {
-  font-size: 1.1rem;
+.Recipe__container .btnContainer {
+  position: sticky;
+  top: 0;
+  transform: translateY(-40%);
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+  padding-block: 2.5rem 1rem;
+  background: white;
+}
+.Recipe__container .btnContainer button {
+  outline: none;
   text-transform: uppercase;
-  font-weight: 600;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
   font-family: "montserrat", sans-serif;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  color: rgb(50, 51, 51);
+  border: 2px solid #067c9c;
+  background: transparent;
+  color: #078eb4;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 
-.Recipe__container .col2 p {
-  color: rgb(73, 75, 75);
-  font-size: 0.97rem;
-  line-height: 1.6;
-  text-indent: 1.5rem;
+.Recipe__container .btnContainer .isActive {
+  color: white;
+  background: #067c9c;
 }
 
-.Recipe__container .col2 a {
+.Recipe__container .col2 .instructions p {
+  color: #5a6166;
+  font-size: 0.9rem;
+  line-height: 2.5;
+  font-family: "montserrat", sans-serif;
+}
+
+.Recipe__container .col2 .instructions a {
   display: inline-block;
   margin-top: 4rem;
   font-size: 0.88rem;
   font-style: italic;
 }
-.Recipe__container .col2 a span {
+.Recipe__container .col2 .instructions a span {
   font-style: normal;
+}
+
+.Recipe__container .col2 .ingredientsContainer {
+  display: flex;
+  gap: 3rem 2rem;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  flex-wrap: wrap;
+}
+
+.Recipe__container .col2 .ingredientsContainer p {
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "montserrat", sans-serif;
+  color: rgb(80, 79, 79);
+}
+.Recipe__container .col2 .ingredientsContainer ul {
+  flex: 1;
+  width: 100%;
+}
+
+.Recipe__container .col2 .ingredientsContainer ul li {
+  list-style-type: decimal;
+  list-style-position: inside;
+  font-family: monospace;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: rgb(87, 86, 86);
 }
