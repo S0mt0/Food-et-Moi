@@ -1,3 +1,4 @@
+/* NoFav Styles */
 .noFavorites {
   height: 50vh;
   padding: 3rem;
@@ -20,7 +21,57 @@
   font-weight: 600;
 }
 
-/* Favorites styles */
+/* Favorites Styles */
+.Fav__Header {
+  width: 90%;
+  max-width: 874px;
+  margin: 4rem auto 1rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid #cececea6;
+  text-align: center;
+  font-family: "montserrat", sans-serif;
+  text-transform: capitalize;
+  word-spacing: 1rem;
+  letter-spacing: 1.5px;
+  /* color: #3a3a3a; */
+  color: #067c9c;
+  /* font-family: "Sunshiney", cursive; */
+}
+
+.Fav__Header span {
+  font-size: 1.4em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.removeAllBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.removeAllBtnWrapper button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #d62418;
+  cursor: pointer;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  transition: 200ms;
+}
+.removeAllBtnWrapper button:hover {
+  color: #d62518be;
+}
+
+.removeAllBtnWrapper button svg {
+  font-size: 1.2em;
+}
+
+.removeAllBtnWrapper a svg {
+  color: #067c9c;
+  font-size: 1.5em;
+}
 
 .favorites {
   display: grid;
@@ -134,7 +185,92 @@
   transition: 300ms;
 }
 
-.favorites .singleMeal footer svg:hover{
-    color: #d62518bb;
+.favorites .singleMeal footer svg:hover {
+  color: #d62518bb;
+}
 
+/* Modal Style */
+.Modal__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 20;
+}
+
+.Modal__container .modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 450px;
+  padding: 20px;
+  min-height: 100px;
+  /* border-radius: 5px; */
+  background: #fffffffa;
+}
+
+.Modal__container .modal svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* border-radius: 0 5px 0 0; */
+  color: #a30f04;
+  font-size: 1.2rem;
+  transition: 200ms;
+  width: 30px;
+}
+
+.Modal__container .modal svg:hover {
+  background: #e02518;
+  color: white;
+}
+
+.Modal__container .modal h3 {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: "montserrat", sans-serif;
+  word-spacing: 0.4rem;
+}
+
+@media (max-width: 480px) {
+  .Modal__container .modal h3 {
+    line-height: 1.5;
+    font-size: 0.75rem;
+    word-spacing: 0.2rem;
+  }
+  .Fav__Header {
+    font-size: 0.99rem;
+    word-spacing: 0.5rem;
+    letter-spacing: 1px;
+  }
+}
+
+.modal .modal_btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.modal .modal_btn button {
+  padding: 0.1rem 0.5rem;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.modal .modal_btn button:first-of-type {
+  background: rgb(7, 124, 7);
+}
+.modal .modal_btn button:last-of-type {
+  background: #e02518;
 }

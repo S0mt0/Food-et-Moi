@@ -15,12 +15,30 @@
 }
 
 .Recipe .title h1 {
-  /* font-family: "Rochester", cursive; */
   font-family: "WindSong", cursive;
   text-transform: capitalize;
   font-size: 3.2rem;
   letter-spacing: 2px;
   color: rgb(118, 120, 122);
+}
+
+@media (max-width: 480px) {
+  .Recipe .title h1 {
+    font-size: 2.3rem;
+  }
+
+  .Recipe .title img {
+    width: 100px;
+  }
+}
+@media (max-width: 320px) {
+  .Recipe .title h1 {
+    font-size: 2rem;
+  }
+
+  .Recipe .title img {
+    width: 90px;
+  }
 }
 
 .Recipe__container {
@@ -44,13 +62,13 @@
 }
 
 .Recipe__container::-webkit-scrollbar-thumb {
-  background: #e6f5f5cb;
+  background: #cde4e4f6;
   border-radius: 20px;
 }
-.Recipe__container::-webkit-scrollbar-track {
+/* .Recipe__container::-webkit-scrollbar-track {
   background-color: #9da5a5e3;
   border: 2px solid rgb(161, 171, 173);
-}
+} */
 /* .Recipe__container::-webkit-scrollbar-button {
   display: block;
   background-color: #9da5a5e3;
@@ -115,6 +133,14 @@
 
 .Recipe__container .col1 .img__container {
   height: 350px;
+  position: relative;
+}
+
+.col1 .img__container svg {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-size: 1.5rem;
 }
 
 .Recipe__container .col1 .img__container img {

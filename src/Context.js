@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect, createContext } from "react";
-import { json } from "react-router-dom";
 
 // New context
 const AppContext = createContext(null);
@@ -12,9 +11,9 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [noMeal, setNoMeal] = useState(false);
   const [isLiked, setisLiked] = useState(false);
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("myFavorites")) || []
-  );
+  const [favorites, setFavorites] = useState([]);
+
+  const [modal, setModal] = useState(false);
 
   // Fetch meals on first render, and commit it to state variable, "allMeals".
   const allMealsURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -39,28 +38,26 @@ const AppProvider = ({ children }) => {
   }, [searchTerm]);
 
   // Arrays of Category and Area
-  // const category = allMeals.map((cat) => cat.strCategory);
-  // const area = allMeals.map((area) => area.strArea);
+  const category = allMeals.map((cat) => cat.strCategory);
+  const area = allMeals.map((area) => area.strArea);
 
   // The arrays above contain duplicate values, hence, the need to remove all duplicates using the following method:
   // CATEGORY
-  // for (let i = 0; i < category.length; i++) {
-  //   for (let j = i + 1; j < category.length; j++) {
-  //     if (category[i] === category[j]) {
-  //       category.splice(j, 1);
-  //       j--;
-  //     }
-  //   }
-  // }
+  for (let i = 0; i < category.length; i++) {
+    for (let j = i + 1; j < category.length; j++) {
+      if (category[i] === category[j]) {
+        category.splice(j, 1);
+      }
+    }
+  }
   // AREA;
-  // for (let i = 0; i < area.length; i++) {
-  //   for (let j = i + 1; j < area.length; j++) {
-  //     if (area[i] === area[j]) {
-  //       category.splice(j, 1);
-  //       j--;
-  //     }
-  //   }
-  // }
+  for (let i = 0; i < area.length; i++) {
+    for (let j = i + 1; j < area.length; j++) {
+      if (area[i] === area[j]) {
+        category.splice(j, 1);
+      }
+    }
+  }
   // console.log(area);
   // console.log(category);
 
@@ -86,10 +83,22 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // Store to local storage
-  useEffect(() => {
-    localStorage.setItem("myFavorites", JSON.stringify(favorites));
-  }, [favorites]);
+  // Store to local storage each time favorite array changes
+  const getFavoriteFromLocalStorage = () => {
+    let favorites = localStorage.getItem("myFavorites");
+    if (favorites) {
+      favorites = JSON.parse(localStorage.getItem("myFavorites"));
+    } else {
+      favorites = [];
+    }
+    return favorites;
+  };
+
+  // Clear Favorite List Function
+  const clearFavorites = () => {
+    setModal(false);
+    favorites.splice(0, favorites.length);
+  };
 
   return (
     <AppContext.Provider
@@ -103,8 +112,11 @@ const AppProvider = ({ children }) => {
         setNoMeal,
         handleFavorite,
         favorites,
-        // category,
-        // area,
+        category,
+        area,
+        modal,
+        setModal,
+        clearFavorites,
       }}
     >
       {children}

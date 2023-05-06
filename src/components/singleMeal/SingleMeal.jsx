@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { chef1 } from "../../assets";
 import Loading from "../loading/Loading";
+import { useGlobalContext } from "../../Context";
+import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 // import Suggestions from "../suggestions/Suggestions";
 
 import "./singleMeal.css";
@@ -28,6 +30,9 @@ const SingleMeal = () => {
   useEffect(() => {
     fetchSingleMeal(`${singleMealURL}${name}`);
   }, [name]);
+
+  //
+  const { favorites, handleFavorite } = useGlobalContext();
 
   const {
     strCategory: cat,
@@ -162,6 +167,19 @@ const SingleMeal = () => {
           <div className="sticky">
             <h3>{mealName}</h3>
             <div className="img__container">
+              {favorites.find((meal) => singleMeal.idMeal === meal.idMeal) ? (
+                <BsFillHeartFill
+                  style={{ color: "#f44336" }}
+                  title="Remove from favorites"
+                  onClick={() => handleFavorite(singleMeal.idMeal)}
+                />
+              ) : (
+                <BsHeart
+                  title="Add to favorites"
+                  onClick={() => handleFavorite(singleMeal.idMeal)}
+                  style={{ color: "white" }}
+                />
+              )}
               <img src={image} alt={mealName} />
             </div>
             <div className="more">
