@@ -5,17 +5,15 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { MdDeleteForever } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
-
+import { NoFav } from "../../assets";
 import { Link } from "react-router-dom";
 
-import { NoFav } from "../../assets";
 import "./favorites.css";
 
 const Favorites = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const { handleFavorite, favorites, clearFavorites, modal, setModal } =
     useGlobalContext();
-
   // console.log(favorites, favorites.length);
 
   // Inline Style functions
@@ -48,7 +46,7 @@ const Favorites = () => {
   if (favorites.length < 1) {
     return (
       <section className="noFavorites">
-        <p>Oops!...... You have not added to your Favorite List</p>
+        <p>Oops!...... There is nothing on your Favorite List</p>
         <img src={NoFav} alt="no favorite" />
       </section>
     );
@@ -64,7 +62,7 @@ const Favorites = () => {
           <HiOutlineArrowNarrowLeft />
         </Link>
         <button onClick={() => setModal(true)}>
-          <span>Clear all</span>
+          <span>delete all</span>
           <MdDeleteForever />
         </button>
       </div>
@@ -85,7 +83,7 @@ const Favorites = () => {
                 <p className="category">
                   Category: <span>{cat}</span>
                 </p>
-                <Link to={`Recipe/${name}`}>
+                <Link to={`/details/${name}`}>
                   <img src={image} alt={name} />
                 </Link>
                 <div className="overlay">
@@ -107,7 +105,7 @@ const Favorites = () => {
         <div className="Modal__container">
           <div className="modal">
             <MdClose title="Close" onClick={() => setModal(false)} />
-            <h3>Do you really want to clear all items?</h3>
+            <h3>Do you really want to delete all items?</h3>
             <div className="modal_btn">
               <button onClick={clearFavorites}>Yes</button>
               <button onClick={() => setModal(false)}>No</button>
