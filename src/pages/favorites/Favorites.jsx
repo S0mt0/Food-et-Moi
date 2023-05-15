@@ -55,7 +55,7 @@ const Favorites = () => {
   return (
     <section className="Fav__Container">
       <h1 className="Fav__Header">
-        You have <span>{favorites.length}</span> favorite items.
+        You have (<span>{favorites.length}</span>) favorite items.
       </h1>
       <div className="removeAllBtnWrapper">
         <Link to="/">

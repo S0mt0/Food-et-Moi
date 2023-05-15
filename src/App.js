@@ -16,11 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Favorites" element={<Favorites />} />
-        <Route path="/Recipe/:name" element={<SingleMeal />} />
+        <Route path="/details/:name" element={<SingleMeal />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       {/* <BackToTopBtn /> */}
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   );
 }

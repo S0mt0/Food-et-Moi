@@ -1,4 +1,3 @@
-export { default as Aside } from "./aside/Aside";
 export { default as BackToTopBtn } from "./backToTopBtn/BackToTopBtn";
 export { default as Footer } from "./footer/Footer";
 export { default as Hero } from "./hero/Hero";

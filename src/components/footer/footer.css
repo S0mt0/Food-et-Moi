@@ -1,0 +1,70 @@
+.main__Footer {
+  margin-top: 5rem;
+  background: #e6ecee;
+  padding: 1rem 2.5rem;
+}
+
+.main__Footer .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main__Footer .content p {
+  font-family: "montserrat", sans-serif;
+  text-align: center;
+  color: rgb(5, 93, 128);
+  font-size: 0.9rem;
+}
+/* .main__Footer .content .info {
+  flex: 1;
+} */
+
+.main__Footer .content .contact {
+  /* flex: 1; */
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.main__Footer .content .contact p {
+  word-spacing: 0.4rem;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+}
+
+.main__Footer .content p span {
+  font-weight: 600;
+  color: rgb(3, 75, 104);
+}
+
+.main__Footer .content .contact .icons {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  /* flex: 1; */
+}
+
+.main__Footer .content .contact .icons a {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.main__Footer .content .contact .icons a:hover {
+  transform: translateY(-3px);
+  background: #f6fafc;
+  transition: transform 200ms;
+}
+
+.main__Footer .content .contact .icons .whatsapp {
+  color: green;
+}
+.main__Footer .content .contact .icons .github {
+  color: rgb(3, 75, 104);
+}
+.main__Footer .content .contact .icons .gmail {
+  color: rgb(177, 11, 11);
+}

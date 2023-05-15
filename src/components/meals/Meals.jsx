@@ -63,7 +63,7 @@ const Meals = () => {
               <p className="category">
                 Category: <span>{cat}</span>
               </p>
-              <Link to={`Recipe/${name}`}>
+              <Link to={`details/${name}`}>
                 <img src={image} alt={name} />
               </Link>
               <div className="overlay">

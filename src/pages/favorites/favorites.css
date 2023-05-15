@@ -1,11 +1,13 @@
 /* NoFav Styles */
 .noFavorites {
-  height: 50vh;
+  min-height: 100vh;
   padding: 3rem;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   text-align: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .noFavorites img {
@@ -30,17 +32,12 @@
   border-bottom: 1px solid #cececea6;
   text-align: center;
   font-family: "montserrat", sans-serif;
+  font-family: monospace;
   text-transform: capitalize;
   word-spacing: 1rem;
-  letter-spacing: 1.5px;
-  /* color: #3a3a3a; */
-  color: #067c9c;
-  /* font-family: "Sunshiney", cursive; */
-}
 
-.Fav__Header span {
-  font-size: 1.4em;
-  font-family: "Montserrat", sans-serif;
+  color: #067c9c;
+  font-family: "Sunshiney", cursive;
 }
 
 .removeAllBtnWrapper {
