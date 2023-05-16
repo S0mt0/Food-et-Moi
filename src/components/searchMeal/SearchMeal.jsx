@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "../../Context";
 import mealDB from "../../apis/mealsFetch";
@@ -12,25 +12,25 @@ const SearchMeal = () => {
 
   const { searchedSuggestions, setSearchedSuggestions } = useGlobalContext();
 
-  const { id } = useParams();
   const navigate = useNavigate();
 
+  // Form input events
   const handleChange = (e) => {
     setInput(e.target.value);
   };
 
   const handleClick = (selected) => {
-    // setInput(selectedtrue);
-    navigate(`/searched/${id}`);
+    navigate(`/searched/${selected}`);
     setShowDropDown(true);
   };
 
-  useEffect(() => {
-    if (input) {
-      setShowDropDown(false);
-    }
-  }, [input]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowDropDown(true);
+    navigate(`/searched/${input.trim()}`);
+  };
 
+  // Function to display dropdown menu
   const renderSuggestions = () => {
     const show = input.trim() ? "show" : null;
 
@@ -56,6 +56,14 @@ const SearchMeal = () => {
     }
   };
 
+  // Effects
+  useEffect(() => {
+    if (input) {
+      setShowDropDown(false);
+    }
+  }, [input]);
+
+  // Fetch searched meals effect
   useEffect(() => {
     let isMounted = true;
 
@@ -87,22 +95,7 @@ const SearchMeal = () => {
     return () => (isMounted = false);
   }, [input, setSearchedSuggestions]);
 
-  // const clearSearch = () => {
-  //   if (input.length === 0) {
-  //     setSearchTerm("");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   clearSearch();
-  // });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // setInput("");
-    setShowDropDown(true);
-    navigate(`/searched/${id}`);
-  };
+  // Return
   return (
     <form
       onSubmit={(e) => {
