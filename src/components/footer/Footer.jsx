@@ -6,6 +6,12 @@ import "./footer.css";
 const Footer = () => {
   const year = new Date().getFullYear();
 
+  // whatsapp link
+  const generateWhatsAppLink = (phoneNumber) => {
+    return `https://wa.me/${phoneNumber}`;
+  };
+  const whatsappLink = generateWhatsAppLink("08148696119");
+
   return (
     <footer className="main__Footer">
       <div className="content">
@@ -19,13 +25,17 @@ const Footer = () => {
             Proudly built by <span>Somto</span>.
           </p>
           <div className="icons">
-            <a href="#">
+            <a href={whatsappLink} target="_blank" rel="noreferrer noopener">
               <BsWhatsapp className="whatsapp" />
             </a>
-            <a href="#">
+            <a
+              href="https://github.com/S0mt0"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <BsGithub className="github" />
             </a>
-            <a href="#">
+            <a href="mailto: sewkito@gmail.com" rel="noreferrer noopener">
               <SiGmail className="gmail" />
             </a>
           </div>

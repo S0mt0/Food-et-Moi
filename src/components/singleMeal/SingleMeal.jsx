@@ -32,7 +32,8 @@ const SingleMeal = () => {
   }, [name]);
 
   //
-  const { favorites, handleFavorite } = useGlobalContext();
+  const { favorites, handleFavorite, addFavorite, removeFavorite } =
+    useGlobalContext();
 
   const {
     strCategory: cat,
@@ -158,8 +159,8 @@ const SingleMeal = () => {
   return (
     <section className="Recipe">
       <div className="title">
-        <h1>Yummy...</h1>
         <img src={chef1} alt="chef" />
+        <h1>voila!</h1>
       </div>
 
       <div className="Recipe__container">
@@ -171,12 +172,12 @@ const SingleMeal = () => {
                 <BsFillHeartFill
                   style={{ color: "#f44336" }}
                   title="Remove from favorites"
-                  onClick={() => handleFavorite(singleMeal.idMeal)}
+                  onClick={() => removeFavorite(singleMeal.idMeal)}
                 />
               ) : (
                 <BsHeart
                   title="Add to favorites"
-                  onClick={() => handleFavorite(singleMeal.idMeal)}
+                  onClick={() => addFavorite(singleMeal.idMeal)}
                   style={{ color: "white" }}
                 />
               )}

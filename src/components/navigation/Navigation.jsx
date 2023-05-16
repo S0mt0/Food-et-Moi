@@ -12,7 +12,7 @@ const Navigation = () => {
   return (
     <nav>
       <div className="container">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" id="#top">
           Food et Moi
         </Link>
         <NavLink

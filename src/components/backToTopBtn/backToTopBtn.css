@@ -1,0 +1,51 @@
+.btt {
+  position: fixed;
+  bottom: 4.5rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* background: #ffffff7e; */
+  background: radial-gradient(transparent, rgba(255, 255, 255, 0.726));
+  place-items: center;
+  text-decoration: none;
+  box-shadow: 0 0 6px #0000007e;
+
+  /* animate */
+  animation: pulse 3.5s ease infinite, bounceIn 400ms linear;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.btt svg {
+  transition: 350ms;
+  font-size: 1.2rem;
+  /* color: rgb(4, 41, 141); */
+  color: rgb(245, 160, 2);
+}
+.btt:hover svg {
+  transform: translateY(-2px);
+}

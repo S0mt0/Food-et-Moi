@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  Outlet,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import {
   Footer,
   BackToTopBtn,
@@ -14,12 +19,16 @@ function App() {
     <Router>
       <Navigation />
       <Routes>
+        {/* <Route path="/" element={<SharedLayout />}>
+          <Route index element={<AllMeals />} />
+          <Route path="/searched" element={<SearchedMeals />} />
+        </Route> */}
         <Route path="/" element={<Home />} />
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/details/:name" element={<SingleMeal />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      {/* <BackToTopBtn /> */}
+      <BackToTopBtn />
       <Footer />
     </Router>
   );

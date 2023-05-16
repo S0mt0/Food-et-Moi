@@ -9,7 +9,7 @@ import NoMeal from "../noMeal/NoMeal";
 
 const Meals = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const { allMeals, loading, noMeal, handleFavorite, favorites } =
+  const { allMeals, loading, noMeal, addFavorite, removeFavorite, favorites } =
     useGlobalContext();
 
   // Inline Style functions
@@ -76,12 +76,12 @@ const Meals = () => {
                 <BsFillHeartFill
                   style={{ color: "#f44336" }}
                   title="Remove from favorites"
-                  onClick={() => handleFavorite(id)}
+                  onClick={() => removeFavorite(id)}
                 />
               ) : (
                 <BsHeart
                   title="Add to favorites"
-                  onClick={() => handleFavorite(id)}
+                  onClick={() => addFavorite(id)}
                 />
               )}
             </footer>

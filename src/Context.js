@@ -1,29 +1,35 @@
 import { useContext, useState, useEffect, createContext } from "react";
+import mealDB from "./apis/mealsFetch";
 
 // New context
 const AppContext = createContext(null);
-
 // The AppProvider component serves as the parent wrapper which will wrap our entire App in the index.js file  enabling every other descendant component to have access to all of its states, and functions etc.
 const AppProvider = ({ children }) => {
   // States
-  const [allMeals, setAllMeals] = useState([]);
+  const [allMeals, setAllMeals] = useState(
+    JSON.parse(localStorage.getItem("meals") || [])
+  );
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("myFavorites") || [])
+  );
+
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [noMeal, setNoMeal] = useState(false);
-  const [isLiked, setisLiked] = useState(false);
-  const [favorites, setFavorites] = useState([]);
-
   const [modal, setModal] = useState(false);
 
-  // Fetch meals on first render, and commit it to state variable, "allMeals".
-  const allMealsURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-
-  const fetchMeals = async (url) => {
+  // Fetch meals on first render, commit it to state variable, "allMeals", and save to local storage.
+  const fetchMeals = async () => {
     try {
-      const response = await fetch(url);
-      const { meals } = await response.json();
-      setLoading(false);
+      const {
+        data: { meals },
+      } = await mealDB.get("/search.php", {
+        params: {
+          s: "",
+        },
+      });
       if (meals) {
+        localStorage.setItem("meals", JSON.stringify(meals));
         setAllMeals(meals);
       } else {
         setNoMeal(true);
@@ -31,73 +37,42 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+
+    if (JSON.parse(localStorage.getItem("meals"))) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchMeals(`${allMealsURL}${searchTerm}`);
-  }, [searchTerm]);
-
-  // Arrays of Category and Area
-  const category = allMeals.map((cat) => cat.strCategory);
-  const area = allMeals.map((area) => area.strArea);
-
-  // The arrays above contain duplicate values, hence, the need to remove all duplicates using the following method:
-  // CATEGORY
-  for (let i = 0; i < category.length; i++) {
-    for (let j = i + 1; j < category.length; j++) {
-      if (category[i] === category[j]) {
-        category.splice(j, 1);
-      }
-    }
-  }
-  // AREA;
-  for (let i = 0; i < area.length; i++) {
-    for (let j = i + 1; j < area.length; j++) {
-      if (area[i] === area[j]) {
-        category.splice(j, 1);
-      }
-    }
-  }
-  // console.log(area);
-  // console.log(category);
+    fetchMeals();
+  }, []);
 
   // Handle favorite selection and deselection function
-  const handleFavorite = (id) => {
-    const newFavorite = allMeals.find((meal) => id === meal.idMeal);
-    const checked = favorites.find((meal) => id === meal.idMeal);
-
-    if (!isLiked) {
-      if (checked) return;
-      setFavorites([...favorites, newFavorite]);
-      setisLiked(true);
-    }
-
-    if (isLiked) {
-      if (checked) {
-        const updatedFavorite = favorites.filter((meal) => meal.idMeal !== id);
-        setFavorites(updatedFavorite);
-      } else {
-        setFavorites([...favorites, newFavorite]);
-        setisLiked(true);
-      }
-    }
+  // ADD
+  const addFavorite = (id) => {
+    const faveItem = allMeals.find((meal) => meal.idMeal === id);
+    if (favorites.find((meal) => meal.idMeal === id)) return;
+    const updatedFavoriteList = [...favorites, faveItem];
+    setFavorites(updatedFavoriteList);
+    localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
   };
 
-  // Store to local storage each time favorite array changes
-  const getFavoriteFromLocalStorage = () => {
-    let favorites = localStorage.getItem("myFavorites");
-    if (favorites) {
-      favorites = JSON.parse(localStorage.getItem("myFavorites"));
-    } else {
-      favorites = [];
+  // REMOVE
+  const removeFavorite = (id) => {
+    if (favorites.find((meal) => meal.idMeal === id)) {
+      const updatedFavoriteList = favorites.filter(
+        (meal) => meal.idMeal !== id
+      );
+      setFavorites(updatedFavoriteList);
+      localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
     }
-    return favorites;
   };
 
   // Clear Favorite List Function
   const clearFavorites = () => {
     setModal(false);
-    favorites.splice(0, favorites.length);
+    setFavorites([]);
+    localStorage.removeItem("myFavorites", JSON.stringify(favorites));
   };
 
   return (
@@ -110,13 +85,12 @@ const AppProvider = ({ children }) => {
         setSearchTerm,
         noMeal,
         setNoMeal,
-        handleFavorite,
         favorites,
-        category,
-        area,
+        addFavorite,
+        removeFavorite,
+        clearFavorites,
         modal,
         setModal,
-        clearFavorites,
       }}
     >
       {children}

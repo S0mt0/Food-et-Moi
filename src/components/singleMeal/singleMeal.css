@@ -3,11 +3,13 @@
 }
 
 .Recipe .title {
-  max-width: 320px;
+  max-width: 400px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 5px;
 }
 
 .Recipe .title img {
@@ -15,11 +17,12 @@
 }
 
 .Recipe .title h1 {
-  font-family: "WindSong", cursive;
+  font-family: "Sunshiney", cursive;
   text-transform: capitalize;
-  font-size: 3.2rem;
+  font-size: 3rem;
   letter-spacing: 2px;
-  color: rgb(118, 120, 122);
+  /* color: rgb(118, 120, 122); */
+  color: #ec2d36;
 }
 
 @media (max-width: 480px) {

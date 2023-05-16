@@ -12,7 +12,7 @@ import "./favorites.css";
 
 const Favorites = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const { handleFavorite, favorites, clearFavorites, modal, setModal } =
+  const { removeFavorite, favorites, clearFavorites, modal, setModal } =
     useGlobalContext();
   // console.log(favorites, favorites.length);
 
@@ -94,7 +94,7 @@ const Favorites = () => {
                 <h3>{name}</h3>
                 <TiDeleteOutline
                   title="Remove from favorites"
-                  onClick={() => handleFavorite(id)}
+                  onClick={() => removeFavorite(id)}
                 />
               </footer>
             </article>
