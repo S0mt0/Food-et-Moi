@@ -1,16 +1,27 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight, BsFillHeartFill, BsHeart } from "react-icons/bs";
 import mealDB from "../../apis/mealsFetch";
 
-import './searched.css'
+import "./searched.css";
 
 const Searched = () => {
-  const [searchedMeals, setSearchedMeals] = useState([]);
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
-  const { addFavorite, removeFavorite, favorites } = useGlobalContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("Location changed!", location.pathname);
+  }, [location]);
+
+  const {
+    addFavorite,
+    removeFavorite,
+    favorites,
+    searchedMeals,
+    setSearchedMeals,
+  } = useGlobalContext();
 
   const { id } = useParams();
   useEffect(() => {
@@ -39,7 +50,7 @@ const Searched = () => {
       fetchMeal();
     }
     return () => (isMounted = false);
-  }, [id]);
+  }, [id, setSearchedMeals]);
   // console.log(id);
   // console.log(searchedMeals);
 
@@ -69,6 +80,7 @@ const Searched = () => {
       return bigScreen;
     }
   };
+
   return (
     <section
       className="searched"
@@ -87,7 +99,7 @@ const Searched = () => {
               <p className="category">
                 Category: <span>{cat}</span>
               </p>
-              <Link to={`details/${name}`}>
+              <Link to={`../details/${name}`}>
                 <img src={image} alt={name} />
               </Link>
               <div className="overlay">

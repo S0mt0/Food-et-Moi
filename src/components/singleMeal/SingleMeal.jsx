@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { chef1 } from "../../assets";
 import Loading from "../loading/Loading";
@@ -13,6 +13,12 @@ const SingleMeal = () => {
   const [load, setLoad] = useState(true);
   const [isActive, setIsActive] = useState("instructions");
   const { name } = useParams();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("Location changed!", location.pathname);
+  }, [location]);
 
   const singleMealURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 

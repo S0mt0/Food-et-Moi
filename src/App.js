@@ -26,7 +26,6 @@ function App() {
           <Route index element={<Meals />} />
           <Route path="/searched/:id" element={<Searched />} />
         </Route>
-        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/details/:name" element={<SingleMeal />} />
         <Route path="*" element={<PageNotFound />} />

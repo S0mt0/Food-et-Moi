@@ -5,7 +5,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { MdDeleteForever, MdClose } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { NoFav } from "../../assets";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./favorites.css";
 
@@ -13,7 +13,16 @@ const Favorites = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const { removeFavorite, favorites, clearFavorites, modal, setModal } =
     useGlobalContext();
-  // console.log(favorites, favorites.length);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("Location changed!", location.pathname);
+  }, [location]);
+
+  useEffect(() => {
+    console.log("Location changed!", location.pathname);
+  }, [location]);
 
   // Inline Style functions
   const checkSize = () => {
@@ -57,7 +66,7 @@ const Favorites = () => {
         You have {favorites.length} favorite items.
       </h1>
       <div className="removeAllBtnWrapper">
-        <Link to="/">
+        <Link to={location.pathname}>
           <HiOutlineArrowNarrowLeft />
         </Link>
         <button onClick={() => setModal(true)}>

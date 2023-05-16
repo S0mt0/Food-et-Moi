@@ -6,9 +6,14 @@ const AppContext = createContext(null);
 // The AppProvider component serves as the parent wrapper which will wrap our entire App in the index.js file  enabling every other descendant component to have access to all of its states, and functions etc.
 const AppProvider = ({ children }) => {
   // States
-  const [allMeals, setAllMeals] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  const [allMeals, setAllMeals] = useState(
+    JSON.parse(localStorage.getItem("meals")) || []
+  );
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("myFavorites")) || []
+  );
   const [searchedSuggestions, setSearchedSuggestions] = useState([]);
+  const [searchedMeals, setSearchedMeals] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [noMeal, setNoMeal] = useState(false);
@@ -46,7 +51,9 @@ const AppProvider = ({ children }) => {
   // Handle favorite selection and deselection function
   // ADD
   const addFavorite = (id) => {
-    const faveItem = allMeals.find((meal) => meal.idMeal === id);
+    const faveItem =
+      allMeals.find((meal) => meal.idMeal === id) ||
+      searchedMeals.find((meal) => meal.idMeal === id);
     if (favorites.find((meal) => meal.idMeal === id)) return;
     const updatedFavoriteList = [...favorites, faveItem];
     setFavorites(updatedFavoriteList);
@@ -87,6 +94,8 @@ const AppProvider = ({ children }) => {
         setModal,
         searchedSuggestions,
         setSearchedSuggestions,
+        searchedMeals,
+        setSearchedMeals,
       }}
     >
       {children}

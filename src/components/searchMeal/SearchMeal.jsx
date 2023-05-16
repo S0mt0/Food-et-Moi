@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "../../Context";
@@ -36,7 +36,7 @@ const SearchMeal = () => {
 
     if (searchedSuggestions.length > 0) {
       return (
-        <ul className={`dropdown ${showDropDown || show}`}>
+        <ul className={`dropdown ${showDropDown || show}`} ref={menuRef}>
           {searchedSuggestions.map((meal) => {
             return (
               <div key={meal.idMeal}>
@@ -95,6 +95,26 @@ const SearchMeal = () => {
     return () => (isMounted = false);
   }, [input, setSearchedSuggestions]);
 
+  //
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        // Close the menu (hide or remove it)
+        setShowDropDown(true);
+      }
+    };
+
+    // Add event listener to the window click event
+    window.addEventListener("click", handleOutsideClick);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
   // Return
   return (
     <form
@@ -102,7 +122,7 @@ const SearchMeal = () => {
         handleSubmit(e);
       }}
     >
-      <div className="input">
+      <div className="input" ref={menuRef}>
         <input
           type="text"
           placeholder="Search your favorite meals here. . . ."
