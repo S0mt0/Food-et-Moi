@@ -1,35 +1,107 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "../../Context";
+import mealDB from "../../apis/mealsFetch";
+
 import "./searchMeal.css";
 
 const SearchMeal = () => {
   const [input, setInput] = useState("");
+  const [showDropDown, setShowDropDown] = useState(false);
 
-  const { setSearchTerm, setNoMeal, searchTerm } = useGlobalContext();
+  const { searchedSuggestions, setSearchedSuggestions } = useGlobalContext();
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInput(e.target.value);
   };
 
-  const clearSearch = () => {
-    if (input.length === 0) {
-      setSearchTerm("");
+  const handleClick = (selected) => {
+    // setInput(selectedtrue);
+    navigate(`/searched/${id}`);
+    setShowDropDown(true);
+  };
+
+  useEffect(() => {
+    if (input) {
+      setShowDropDown(false);
+    }
+  }, [input]);
+
+  const renderSuggestions = () => {
+    const show = input.trim() ? "show" : null;
+
+    if (searchedSuggestions.length > 0) {
+      return (
+        <ul className={`dropdown ${showDropDown || show}`}>
+          {searchedSuggestions.map((meal) => {
+            return (
+              <div key={meal.idMeal}>
+                <li
+                  onClick={() => {
+                    handleClick(meal.strMeal);
+                  }}
+                >
+                  <span>{meal.strMeal}</span>
+                  <p>({meal.strArea})</p>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
+      );
     }
   };
 
   useEffect(() => {
-    clearSearch();
-  });
+    let isMounted = true;
+
+    const fetchMeal = async () => {
+      try {
+        const {
+          data: { meals },
+        } = await mealDB.get("/search.php", {
+          params: {
+            s: input.trim(),
+          },
+        });
+        if (meals) {
+          if (isMounted) {
+            setSearchedSuggestions(meals);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (input.trim().length > 0) {
+      fetchMeal();
+    } else {
+      setSearchedSuggestions([]);
+    }
+
+    return () => (isMounted = false);
+  }, [input, setSearchedSuggestions]);
+
+  // const clearSearch = () => {
+  //   if (input.length === 0) {
+  //     setSearchTerm("");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   clearSearch();
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm(input.trim());
-    setInput(input.trim());
-
-    if (searchTerm !== input) {
-      setNoMeal(false);
-    }
+    // setInput("");
+    setShowDropDown(true);
+    navigate(`/searched/${id}`);
   };
   return (
     <form
@@ -45,8 +117,9 @@ const SearchMeal = () => {
           value={input}
         />
         <FaSearch />
+        {renderSuggestions()}
       </div>
-      <button type="submit">Search</button   >
+      <button type="submit">Search</button>
     </form>
   );
 };

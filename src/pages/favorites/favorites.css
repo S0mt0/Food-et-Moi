@@ -28,16 +28,14 @@
   width: 90%;
   max-width: 874px;
   margin: 4rem auto 1rem;
-  padding-block: 2rem;
+  padding-block: 0.5rem;
   border-bottom: 1px solid #cececea6;
   text-align: center;
-  font-family: "montserrat", sans-serif;
-  font-family: monospace;
   text-transform: capitalize;
-  word-spacing: 1rem;
-
-  color: #067c9c;
-  font-family: "Sunshiney", cursive;
+  color: #01416b;
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1.2rem;
 }
 
 .removeAllBtnWrapper {
@@ -66,8 +64,8 @@
 }
 
 .removeAllBtnWrapper a svg {
-  color: #067c9c;
-  font-size: 1.5em;
+  color: #d62518be;
+  font-size: 1.3em;
 }
 
 .favorites {

@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
-import { MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever, MdClose } from "react-icons/md";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import { MdClose } from "react-icons/md";
 import { NoFav } from "../../assets";
 import { Link } from "react-router-dom";
 
@@ -55,7 +54,7 @@ const Favorites = () => {
   return (
     <section className="Fav__Container">
       <h1 className="Fav__Header">
-        You have (<span>{favorites.length}</span>) favorite items.
+        You have {favorites.length} favorite items.
       </h1>
       <div className="removeAllBtnWrapper">
         <Link to="/">

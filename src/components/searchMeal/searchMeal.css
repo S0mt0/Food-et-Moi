@@ -38,6 +38,76 @@ form .input {
   color: #a5a3a3;
 }
 
+.input .dropdown {
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  min-height: 100px;
+  max-height: 400px;
+  background: white;
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+  border-top: 1px solid #e7e7e7;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 15px 15px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+/* scrollbar styles */
+.input .dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.input .dropdown::-webkit-scrollbar-thumb {
+  background: gold;
+  border-radius: 20px;
+}
+
+.input .dropdown li:before {
+  /* content: "\1F372"; */
+  content: "🍽️";
+  content: "🍲";
+  display: inline-block;
+  margin-right: 8px;
+  font-family: "montserrat", sans-serif;
+}
+
+.input .dropdown li {
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+.input .dropdown div {
+  transition: 200ms;
+  border-bottom: 1px dotted #e7e7e7;
+  margin-bottom: 1rem;
+}
+
+.input .dropdown div:last-child {
+  border: none;
+  margin-bottom: 0;
+}
+.input .dropdown div:hover {
+  transform: translateX(4px);
+}
+
+.input .dropdown li p {
+  font-size: 0.6rem;
+  color: #797979;
+  font-family: monospace;
+}
+
+.input .dropdown.show {
+  display: block;
+}
+
 form button {
   flex: 0.5;
   border: none;

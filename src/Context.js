@@ -6,15 +6,11 @@ const AppContext = createContext(null);
 // The AppProvider component serves as the parent wrapper which will wrap our entire App in the index.js file  enabling every other descendant component to have access to all of its states, and functions etc.
 const AppProvider = ({ children }) => {
   // States
-  const [allMeals, setAllMeals] = useState(
-    JSON.parse(localStorage.getItem("meals") || [])
-  );
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("myFavorites") || [])
-  );
+  const [allMeals, setAllMeals] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [searchedSuggestions, setSearchedSuggestions] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
   const [noMeal, setNoMeal] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -81,8 +77,6 @@ const AppProvider = ({ children }) => {
         allMeals,
         loading,
         setLoading,
-        searchTerm,
-        setSearchTerm,
         noMeal,
         setNoMeal,
         favorites,
@@ -91,6 +85,8 @@ const AppProvider = ({ children }) => {
         clearFavorites,
         modal,
         setModal,
+        searchedSuggestions,
+        setSearchedSuggestions,
       }}
     >
       {children}

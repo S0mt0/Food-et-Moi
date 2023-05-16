@@ -11,19 +11,22 @@ import {
   PageNotFound,
   SingleMeal,
   Navigation,
+  SharedLayout,
+  Meals,
+  Searched,
 } from "./components";
-import { Home, Favorites } from "./pages";
+import { Favorites } from "./pages";
 
 function App() {
   return (
     <Router>
       <Navigation />
       <Routes>
-        {/* <Route path="/" element={<SharedLayout />}>
-          <Route index element={<AllMeals />} />
-          <Route path="/searched" element={<SearchedMeals />} />
-        </Route> */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Meals />} />
+          <Route path="/searched/:id" element={<Searched />} />
+        </Route>
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/details/:name" element={<SingleMeal />} />
         <Route path="*" element={<PageNotFound />} />
