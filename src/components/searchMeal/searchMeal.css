@@ -40,11 +40,11 @@ form .input {
 .input .dropdown {
   z-index: 10;
   position: absolute;
-  left: 50%;
+  left: 10px;
   top: 100%;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   min-height: 100px;
   max-height: 400px;
   background: white;

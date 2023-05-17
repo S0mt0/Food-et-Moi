@@ -10,6 +10,8 @@ const SearchMeal = () => {
   const [input, setInput] = useState("");
   const [hideDropDown, setHideDropDown] = useState(false);
 
+  const [buttonText, setButtonText] = useState("Searched here. . .");
+
   const { searchedSuggestions, setSearchedSuggestions } = useGlobalContext();
 
   const navigate = useNavigate();
@@ -21,7 +23,9 @@ const SearchMeal = () => {
 
   const handleClick = (selected) => {
     navigate(`/searched/${selected}`);
-    setHideDropDown(true);
+
+    setButtonText(selected);
+    setInput("");
   };
 
   // Function to display dropdown menu
