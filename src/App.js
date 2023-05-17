@@ -4,25 +4,24 @@ import {
   Footer,
   BackToTopBtn,
   PageNotFound,
-  SingleMeal,
+  DetailedMeal,
   Navigation,
-  SharedLayout,
   Meals,
-  Searched,
+  SearchedResults,
 } from "./components";
-import { Favorites } from "./pages";
+import { Favorites, Home } from "./pages";
 
 function App() {
   return (
     <Router>
       <Navigation />
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="/" element={<Home />}>
           <Route index element={<Meals />} />
-          <Route path="/searched/:id" element={<Searched />} />
+          <Route path="/searched/:id" element={<SearchedResults />} />
         </Route>
         <Route path="/Favorites" element={<Favorites />} />
-        <Route path="/details/:name" element={<SingleMeal />} />
+        <Route path="/details/:name" element={<DetailedMeal />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <BackToTopBtn />

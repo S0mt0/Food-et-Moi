@@ -1,0 +1,28 @@
+.pnf {
+  width: 80%;
+  max-width: 700px;
+  margin: 5rem auto;
+}
+
+.pnf .sign {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.pnf h3 {
+  color: #f80303f1;
+  margin-bottom: 1rem;
+}
+
+.pnf small {
+  display: block;
+}
+
+.pnf small a {
+  text-decoration: underline;
+  color: #7c0ee2;
+}
+.pnf small a:hover {
+  text-decoration: underline;
+  color: rgba(137, 43, 226, 0.76);
+}

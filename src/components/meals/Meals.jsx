@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 
 import "./meals.css";
 import Loading from "../loading/Loading";
-import NoMeal from "../noMeal/NoMeal";
 
 const Meals = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-  const { allMeals, loading, noMeal, addFavorite, removeFavorite, favorites } =
+  const { allMeals, loading, addFavorite, removeFavorite, favorites } =
     useGlobalContext();
 
-  // Inline Style functions
+  // Inline Style functions for responsiveness
   const checkSize = () => {
     setScreenSize(window.innerWidth);
   };
@@ -42,10 +41,6 @@ const Meals = () => {
   // Conditional Renderings
   if (loading) {
     return <Loading />;
-  }
-
-  if (noMeal) {
-    return <NoMeal />;
   }
 
   return (

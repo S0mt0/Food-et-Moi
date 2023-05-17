@@ -24,6 +24,9 @@
 }
 
 /* Favorites Styles */
+.Fav__Container {
+  min-height: 100vh;
+}
 .Fav__Header {
   width: 90%;
   max-width: 874px;
@@ -40,7 +43,7 @@
 
 .removeAllBtnWrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 2rem;
 }
 

@@ -16,6 +16,4 @@ export { default as chef1 } from "../assets/images/chef1.png";
 export { default as NoFav } from "../assets/images/NoFave.png";
 
 // Loaders
-export { default as loader1 } from "../assets/loaders/loader1.svg";
-export { default as loader2 } from "../assets/loaders/loader2.svg";
 export { default as loader3 } from "../assets/loaders/loader3.svg";

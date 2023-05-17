@@ -42,7 +42,6 @@ form .input {
   position: absolute;
   left: 10px;
   top: 100%;
-  /* transform: translateX(-50%); */
   width: 100%;
   max-width: 350px;
   min-height: 100px;
@@ -54,7 +53,6 @@ form .input {
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 0 15px 15px 5px rgba(0, 0, 0, 0.2);
-  display: none;
 }
 
 /* scrollbar styles */
@@ -68,8 +66,6 @@ form .input {
 }
 
 .input .dropdown li:before {
-  /* content: "\1F372"; */
-  content: "🍽️";
   content: "🍲";
   display: inline-block;
   margin-right: 8px;
@@ -103,35 +99,15 @@ form .input {
   font-family: monospace;
 }
 
-.input .dropdown.show {
-  display: block;
-}
-
-form button {
-  flex: 0.5;
-  border: none;
-  outline: none;
-  border-radius: 0 30px 30px 0;
-  cursor: pointer;
-  background: #fdd806;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  font-weight: 600;
-  color: #1a1919;
-  font-family: "Montserrat", sans-serif;
-  transition: background 200ms;
-  padding: 0 10px;
-}
-
-form button:hover {
-  background: #fdd806e0;
-}
-
 @media (max-width: 520px) {
   .input input {
     font-size: 0.9rem;
     min-height: 35px;
+  }
+}
+@media (max-width: 380px) {
+  .input .dropdown li p {
+    font-size: 0.4rem;
   }
 
   .input input::placeholder {
@@ -140,9 +116,5 @@ form button:hover {
 
   .input svg {
     font-size: 0.78rem;
-  }
-
-  form button {
-    font-size: 0.75rem;
   }
 }

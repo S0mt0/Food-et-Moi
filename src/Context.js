@@ -1,24 +1,25 @@
 import { useContext, useState, useEffect, createContext } from "react";
 import mealDB from "./apis/mealsFetch";
-import { useLocation } from "react-router-dom";
 
 // New context
 const AppContext = createContext(null);
 // The AppProvider component serves as the parent wrapper which will wrap our entire App in the index.js file  enabling every other descendant component to have access to all of its states, and functions etc.
 const AppProvider = ({ children }) => {
-  // States
   const [allMeals, setAllMeals] = useState(
     JSON.parse(localStorage.getItem("meals")) || []
   );
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("myFavorites")) || []
   );
-  const [searchedSuggestions, setSearchedSuggestions] = useState([]);
-  const [searchedMeals, setSearchedMeals] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [noMeal, setNoMeal] = useState(false);
+  const [noResult, setNoResult] = useState(false);
   const [modal, setModal] = useState(false);
+
+  // Search Input states
+  const [input, setInput] = useState("");
+  const [searchedSuggestions, setSearchedSuggestions] = useState([]);
+  const [searchedMeals, setSearchedMeals] = useState([]);
 
   // Fetch meals on first render, commit it to state variable, "allMeals", and save to local storage.
   const fetchMeals = async () => {
@@ -33,8 +34,6 @@ const AppProvider = ({ children }) => {
       if (meals) {
         localStorage.setItem("meals", JSON.stringify(meals));
         setAllMeals(meals);
-      } else {
-        setNoMeal(true);
       }
     } catch (error) {
       console.log(error);
@@ -48,6 +47,38 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchMeals();
   }, []);
+
+  // FETCH MEALS ON SEARCH
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchMeal = async () => {
+      try {
+        const {
+          data: { meals },
+        } = await mealDB.get("/search.php", {
+          params: {
+            s: input.trim(),
+          },
+        });
+        if (meals) {
+          if (isMounted) {
+            setSearchedSuggestions(meals);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (input.trim().length > 0) {
+      fetchMeal();
+    } else {
+      setSearchedSuggestions([]);
+    }
+
+    return () => (isMounted = false);
+  }, [input, setSearchedSuggestions]);
 
   // Handle favorite selection and deselection function
   // ADD
@@ -85,8 +116,8 @@ const AppProvider = ({ children }) => {
         allMeals,
         loading,
         setLoading,
-        noMeal,
-        setNoMeal,
+        noResult,
+        setNoResult,
         favorites,
         addFavorite,
         removeFavorite,
@@ -97,6 +128,8 @@ const AppProvider = ({ children }) => {
         setSearchedSuggestions,
         searchedMeals,
         setSearchedMeals,
+        input,
+        setInput,
       }}
     >
       {children}
@@ -109,30 +142,5 @@ const useGlobalContext = () => {
   return useContext(AppContext);
 };
 
-// used to track previous locations so backward navigation is made easier
-const useCurrentLocation = () => {
-  const [currentLocation, setCurrentLocation] = useState(
-    useLocation().pathname
-  );
-
-  const locate = useLocation();
-  useEffect(() => {
-    setCurrentLocation(locate);
-  }, [locate]);
-
-  return currentLocation;
-};
-
-const usePrevLocation = () => {
-  const [prevLocation, setPrevLocation] = useState(useLocation().pathname);
-
-  const locate = useCurrentLocation();
-  useEffect(() => {
-    setPrevLocation(locate);
-  }, [locate]);
-
-  return prevLocation;
-};
-
 // Exports
-export { AppProvider, AppContext, useGlobalContext, usePrevLocation };
+export { AppProvider, AppContext, useGlobalContext };

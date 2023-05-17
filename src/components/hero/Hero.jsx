@@ -1,8 +1,8 @@
-import SearchMeal from "../searchMeal/SearchMeal";
 import { FoodQuotes } from "../../assets";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import "./hero.css";
+import SearchInput from "../searchInput/SearchInput";
 
 const Hero = () => {
   return (
@@ -32,7 +32,7 @@ const Hero = () => {
           })}
         </Splide>
       </div>
-      <SearchMeal />
+      <SearchInput />
     </section>
   );
 };

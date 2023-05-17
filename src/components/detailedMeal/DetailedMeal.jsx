@@ -4,31 +4,46 @@ import { chef1 } from "../../assets";
 import Loading from "../loading/Loading";
 import { useGlobalContext } from "../../Context";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
-// import Suggestions from "../suggestions/Suggestions";
+import mealDB from "../../apis/mealsFetch";
 
-import "./singleMeal.css";
+import "./detailedMeal.css";
 
-const SingleMeal = () => {
+const DetailedMeal = () => {
   const [singleMeal, setSingleMeal] = useState([]);
   const [load, setLoad] = useState(true);
   const [isActive, setIsActive] = useState("instructions");
   const { name } = useParams();
 
-  const singleMealURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-
-  const fetchSingleMeal = async (url) => {
-    try {
-      const response = await fetch(url);
-      const { meals } = await response.json();
-      setSingleMeal(meals[0]);
-      setLoad(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchSingleMeal(`${singleMealURL}${name}`);
+    let isMounted = true;
+
+    const fetchMeal = async () => {
+      try {
+        const {
+          data: { meals },
+        } = await mealDB.get("/search.php", {
+          params: {
+            s: name,
+          },
+        });
+        if (meals) {
+          if (isMounted) {
+            setSingleMeal(meals[0]);
+            setLoad(false);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (isMounted) {
+      fetchMeal();
+    }
+    return () => {
+      setSingleMeal([]);
+      isMounted = false;
+    };
   }, [name]);
 
   //
@@ -256,4 +271,4 @@ const SingleMeal = () => {
   );
 };
 
-export default SingleMeal;
+export default DetailedMeal;

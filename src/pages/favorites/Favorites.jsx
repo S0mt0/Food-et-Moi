@@ -3,7 +3,6 @@ import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import { MdDeleteForever, MdClose } from "react-icons/md";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { NoFav } from "../../assets";
 import { Link } from "react-router-dom";
 
@@ -56,9 +55,6 @@ const Favorites = () => {
         You have {favorites.length} favorite items.
       </h1>
       <div className="removeAllBtnWrapper">
-        <Link to={"/"}>
-          <HiOutlineArrowNarrowLeft />
-        </Link>
         <button onClick={() => setModal(true)}>
           <span>delete all</span>
           <MdDeleteForever />

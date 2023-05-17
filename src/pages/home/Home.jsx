@@ -1,16 +1,13 @@
-import { Meals, Aside, Hero } from "../../components";
+import { Outlet } from "react-router-dom";
+import { Hero } from "../../components";
 import "./home.css";
 
 const Home = () => {
-
   return (
-    <>
+    <section>
       <Hero />
-      <section>
-        <Meals />
-      </section>
-      {/* <Aside /> */}
-    </>
+      <Outlet />
+    </section>
   );
 };
 

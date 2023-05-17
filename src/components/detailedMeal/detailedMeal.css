@@ -68,26 +68,6 @@
   background: #cde4e4f6;
   border-radius: 20px;
 }
-/* .Recipe__container::-webkit-scrollbar-track {
-  background-color: #9da5a5e3;
-  border: 2px solid rgb(161, 171, 173);
-} */
-/* .Recipe__container::-webkit-scrollbar-button {
-  display: block;
-  background-color: #9da5a5e3;
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-position: center;
-  height: 8px;
-} */
-
-/* .Recipe__container::-webkit-scrollbar-button:vertical:start:increment {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg");
-}
-
-.Recipe__container::-webkit-scrollbar-button:vertical:end:decrement {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg");
-} */
 
 .Recipe__container .col1 .sticky {
   position: sticky;

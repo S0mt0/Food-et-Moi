@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight, BsFillHeartFill, BsHeart } from "react-icons/bs";
 import mealDB from "../../apis/mealsFetch";
+import NoMeal from "../noMeal/NoMeal";
 
-import "./searched.css";
+import "./searchedResults.css";
 
 const Searched = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -15,6 +16,8 @@ const Searched = () => {
     favorites,
     searchedMeals,
     setSearchedMeals,
+    noResult,
+    setNoResult,
   } = useGlobalContext();
 
   const { id } = useParams();
@@ -33,7 +36,11 @@ const Searched = () => {
         if (meals) {
           if (isMounted) {
             setSearchedMeals(meals);
+            setNoResult(false);
           }
+        }
+        if (meals === null) {
+          setNoResult(true);
         }
       } catch (error) {
         console.log(error);
@@ -43,10 +50,11 @@ const Searched = () => {
     if (isMounted) {
       fetchMeal();
     }
-    return () => (isMounted = false);
-  }, [id, setSearchedMeals]);
-  // console.log(id);
-  // console.log(searchedMeals);
+    return () => {
+      setSearchedMeals([]);
+      isMounted = false;
+    };
+  }, [id, setSearchedMeals, setNoResult]);
 
   // Inline Style functions
   const checkSize = () => {
@@ -74,6 +82,10 @@ const Searched = () => {
       return bigScreen;
     }
   };
+
+  if (noResult) {
+    return <NoMeal />;
+  }
 
   return (
     <section
