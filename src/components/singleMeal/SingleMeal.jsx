@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { chef1 } from "../../assets";
 import Loading from "../loading/Loading";
@@ -13,12 +13,6 @@ const SingleMeal = () => {
   const [load, setLoad] = useState(true);
   const [isActive, setIsActive] = useState("instructions");
   const { name } = useParams();
-
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log("Location changed!", location.pathname);
-  }, [location]);
 
   const singleMealURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
@@ -38,8 +32,7 @@ const SingleMeal = () => {
   }, [name]);
 
   //
-  const { favorites, handleFavorite, addFavorite, removeFavorite } =
-    useGlobalContext();
+  const { favorites, addFavorite, removeFavorite } = useGlobalContext();
 
   const {
     strCategory: cat,
@@ -144,7 +137,11 @@ const SingleMeal = () => {
   const trueIngredients = [];
 
   for (let i = 0; i < ingredients.length; i++) {
-    if (ingredients[i] !== "" && ingredients[i] !== " ") {
+    if (
+      ingredients[i] !== "" &&
+      ingredients[i] !== " " &&
+      ingredients[i] !== null
+    ) {
       trueIngredients.push(ingredients[i]);
     }
   }
@@ -152,7 +149,11 @@ const SingleMeal = () => {
   const trueMeasurements = [];
 
   for (let i = 0; i < measurements.length; i++) {
-    if (measurements[i] !== "" && measurements[i] !== " ") {
+    if (
+      measurements[i] !== "" &&
+      measurements[i] !== " " &&
+      measurements[i] !== null
+    ) {
       trueMeasurements.push(measurements[i]);
     }
   }

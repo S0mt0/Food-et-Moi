@@ -8,7 +8,7 @@ import "./searchMeal.css";
 
 const SearchMeal = () => {
   const [input, setInput] = useState("");
-  const [showDropDown, setShowDropDown] = useState(false);
+  const [hideDropDown, setHideDropDown] = useState(false);
 
   const { searchedSuggestions, setSearchedSuggestions } = useGlobalContext();
 
@@ -21,13 +21,7 @@ const SearchMeal = () => {
 
   const handleClick = (selected) => {
     navigate(`/searched/${selected}`);
-    setShowDropDown(true);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowDropDown(true);
-    navigate(`/searched/${input.trim()}`);
+    setHideDropDown(true);
   };
 
   // Function to display dropdown menu
@@ -36,7 +30,7 @@ const SearchMeal = () => {
 
     if (searchedSuggestions.length > 0) {
       return (
-        <ul className={`dropdown ${showDropDown || show}`} ref={menuRef}>
+        <ul className={`dropdown ${hideDropDown || show}`} ref={menuRef}>
           {searchedSuggestions.map((meal) => {
             return (
               <div key={meal.idMeal}>
@@ -59,7 +53,7 @@ const SearchMeal = () => {
   // Effects
   useEffect(() => {
     if (input) {
-      setShowDropDown(false);
+      setHideDropDown(false);
     }
   }, [input]);
 
@@ -97,12 +91,11 @@ const SearchMeal = () => {
 
   //
   const menuRef = useRef(null);
-
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         // Close the menu (hide or remove it)
-        setShowDropDown(true);
+        setHideDropDown(true);
       }
     };
 
@@ -117,11 +110,7 @@ const SearchMeal = () => {
 
   // Return
   return (
-    <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-      }}
-    >
+    <form>
       <div className="input" ref={menuRef}>
         <input
           type="text"
@@ -132,7 +121,6 @@ const SearchMeal = () => {
         <FaSearch />
         {renderSuggestions()}
       </div>
-      <button type="submit">Search</button>
     </form>
   );
 };

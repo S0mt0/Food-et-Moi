@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect, createContext } from "react";
 import mealDB from "./apis/mealsFetch";
+import { useLocation } from "react-router-dom";
 
 // New context
 const AppContext = createContext(null);
@@ -108,5 +109,30 @@ const useGlobalContext = () => {
   return useContext(AppContext);
 };
 
+// used to track previous locations so backward navigation is made easier
+const useCurrentLocation = () => {
+  const [currentLocation, setCurrentLocation] = useState(
+    useLocation().pathname
+  );
+
+  const locate = useLocation();
+  useEffect(() => {
+    setCurrentLocation(locate);
+  }, [locate]);
+
+  return currentLocation;
+};
+
+const usePrevLocation = () => {
+  const [prevLocation, setPrevLocation] = useState(useLocation().pathname);
+
+  const locate = useCurrentLocation();
+  useEffect(() => {
+    setPrevLocation(locate);
+  }, [locate]);
+
+  return prevLocation;
+};
+
 // Exports
-export { AppProvider, AppContext, useGlobalContext };
+export { AppProvider, AppContext, useGlobalContext, usePrevLocation };

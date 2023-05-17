@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight, BsFillHeartFill, BsHeart } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./meals.css";
 import Loading from "../loading/Loading";
@@ -11,13 +11,6 @@ const Meals = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const { allMeals, loading, noMeal, addFavorite, removeFavorite, favorites } =
     useGlobalContext();
-
-
-    const location = useLocation();
-
-    useEffect(() => {
-      console.log("Location changed!", location.pathname);
-    }, [location]);
 
   // Inline Style functions
   const checkSize = () => {

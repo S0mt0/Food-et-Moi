@@ -1,4 +1,4 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight, BsFillHeartFill, BsHeart } from "react-icons/bs";
@@ -8,12 +8,6 @@ import "./searched.css";
 
 const Searched = () => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log("Location changed!", location.pathname);
-  }, [location]);
 
   const {
     addFavorite,
