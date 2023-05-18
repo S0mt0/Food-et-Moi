@@ -9,10 +9,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: rgb(246, 250, 252);
 }

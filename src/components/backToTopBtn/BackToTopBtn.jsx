@@ -21,15 +21,22 @@ const BackToTopBtn = () => {
     };
   });
 
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <a
+    <button
       className="btt"
-      href="#top"
+      onClick={handleScrollToTop}
       style={{ display: toTop ? "grid" : "none" }}
       title="Back to Top"
     >
       <BsArrowUp />
-    </a>
+    </button>
   );
 };
 
