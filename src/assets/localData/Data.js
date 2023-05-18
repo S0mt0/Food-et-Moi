@@ -42,4 +42,52 @@ export const FoodQuotes = [
       "There are people in the world so hungry, that God cannot appear to them except in the form of bread.",
     author: "Mahatma Gandhi",
   },
+  // new
+  {
+    quote: "There is no sincerer love than the love of food.",
+    author: "George Bernard Shaw",
+  },
+  {
+    quote: "It's okay to eat fish because they don't have any feelings.",
+    author: "Kurt Cobain",
+  },
+  {
+    quote:
+      "One cannot think well, love well, sleep well, if one has not dined well.",
+    author: "Virginia Woolf",
+  },
+  {
+    quote: "If you can't feed a hundred people, then feed just one.",
+    author: "Mother Teresa",
+  },
+  {
+    quote:
+      "Instead of going out to dinner, buy good food. Cooking at home shows such affection. In a bad economy, it's more important to make yourself feel good.",
+    author: "Ina Garten",
+  },
+  {
+    quote: "One should eat to live, not live to eat.",
+    author: "Moliere",
+  },
+  {
+    quote: "Not eating meat is a decision, eating meat is an instinct.",
+    author: "Denis Leary",
+  },
+  {
+    quote: "Food for the body is not enough. There must be food for the soul.",
+    author: "Dorothy Day",
+  },
+  {
+    quote: "Food is our common ground, a universal experience.",
+    author: "James Beard",
+  },
+  {
+    quote: "A waffle is like a pancake with a syrup trap.",
+    author: "Mitch Hedberg",
+  },
+  {
+    quote:
+      "When a man's stomach is full it makes no difference whether he is rich or poor.",
+    author: "Euripides",
+  },
 ];
