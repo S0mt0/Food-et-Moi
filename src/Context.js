@@ -8,9 +8,7 @@ const AppProvider = ({ children }) => {
   const [allMeals, setAllMeals] = useState(
     JSON.parse(localStorage.getItem("meals")) || []
   );
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("myFavorites")) || []
-  );
+  const [favorites, setFavorites] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [noResult, setNoResult] = useState(false);
@@ -89,7 +87,7 @@ const AppProvider = ({ children }) => {
     if (favorites.find((meal) => meal.idMeal === id)) return;
     const updatedFavoriteList = [...favorites, faveItem];
     setFavorites(updatedFavoriteList);
-    localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
+    // localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
   };
 
   // REMOVE
@@ -99,7 +97,7 @@ const AppProvider = ({ children }) => {
         (meal) => meal.idMeal !== id
       );
       setFavorites(updatedFavoriteList);
-      localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
+      // localStorage.setItem("myFavorites", JSON.stringify(updatedFavoriteList));
     }
   };
 
@@ -107,7 +105,7 @@ const AppProvider = ({ children }) => {
   const clearFavorites = () => {
     setModal(false);
     setFavorites([]);
-    localStorage.removeItem("myFavorites", JSON.stringify(favorites));
+    // localStorage.removeItem("myFavorites", JSON.stringify(favorites));
   };
 
   return (
