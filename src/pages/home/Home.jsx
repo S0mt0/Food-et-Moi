@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import { Hero } from "../../components";
-import "./home.css";
 
 const Home = () => {
   return (

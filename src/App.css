@@ -13,6 +13,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: rgb(246, 250, 252);
+}
+
 h1,
 h2,
 h3,
@@ -27,18 +31,7 @@ img {
   width: 100%;
 }
 
-/* h1 {
-  font-size: 3rem;
-  color: hsl(200, 75%, 70%);
-  color: #0890ba;
-  color: #0ab6eb;
-} */
-
 .container {
   width: 80%;
   max-width: 1240px;
-}
-
-body {
-  background: rgb(246, 250, 252);
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const meals = axios.create({
+const mealDB = axios.create({
   baseURL: "https://www.themealdb.com/api/json/v1/1",
 });
 
-export default meals;
+export default mealDB;

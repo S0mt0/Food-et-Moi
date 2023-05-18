@@ -40,7 +40,7 @@ const Favorites = () => {
     }
   };
 
-  if (favorites.length < 1) {
+  if (favorites.length === 0) {
     return (
       <section className="noFavorites">
         <p>Oops!...... There is nothing on your Favorite List</p>

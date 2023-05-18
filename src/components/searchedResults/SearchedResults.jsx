@@ -4,6 +4,7 @@ import { useGlobalContext } from "../../Context";
 import { BsBoxArrowUpRight, BsFillHeartFill, BsHeart } from "react-icons/bs";
 import mealDB from "../../apis/mealsFetch";
 import NoMeal from "../noMeal/NoMeal";
+import Loader from "../loading/Loading";
 
 import "./searchedResults.css";
 
@@ -18,11 +19,14 @@ const Searched = () => {
     setSearchedMeals,
     noResult,
     setNoResult,
+    loading,
+    setLoading,
   } = useGlobalContext();
 
   const { id } = useParams();
   useEffect(() => {
     let isMounted = true;
+    setLoading(true);
 
     const fetchMeal = async () => {
       try {
@@ -33,14 +37,18 @@ const Searched = () => {
             s: id,
           },
         });
-        if (meals) {
-          if (isMounted) {
+
+        if (isMounted) {
+          if (meals) {
             setSearchedMeals(meals);
             setNoResult(false);
+            setLoading(false);
           }
-        }
-        if (meals === null) {
-          setNoResult(true);
+
+          if (meals === null) {
+            setNoResult(true);
+            setLoading(false);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -50,11 +58,13 @@ const Searched = () => {
     if (isMounted) {
       fetchMeal();
     }
+
     return () => {
-      setSearchedMeals([]);
       isMounted = false;
+      setSearchedMeals([]);
+      setNoResult(false);
     };
-  }, [id, setSearchedMeals, setNoResult]);
+  }, [id, setSearchedMeals, setNoResult, setLoading]);
 
   // Inline Style functions
   const checkSize = () => {
@@ -82,6 +92,10 @@ const Searched = () => {
       return bigScreen;
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   if (noResult) {
     return <NoMeal />;
