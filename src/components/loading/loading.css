@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   min-height: 50vh;
-  /* min-height: calc(100vh - 3.5rem); */
   justify-content: center;
   align-items: center;
   flex-direction: column;

@@ -2,7 +2,7 @@
   min-height: 40vh;
   background-color: gold;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-    url(../../assets/images/slide9.jpg) center/cover no-repeat;
+    url(../../assets/images/slide1.jpg) center/cover no-repeat;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
