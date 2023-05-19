@@ -1,5 +1,6 @@
 .hero {
   min-height: 40vh;
+  background-color: gold;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
     url(../../assets/images/slide9.jpg) center/cover no-repeat;
   display: flex;
