@@ -43,11 +43,13 @@ nav {
 }
 
 nav .container {
+  width: 80%;
+  max-width: 1240px;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
 }
 
 .container .logo {

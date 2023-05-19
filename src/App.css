@@ -10,7 +10,7 @@
 }
 
 body {
-  background: rgb(246, 250, 252);
+  background: #f6fafc;
 }
 
 h1,
@@ -25,9 +25,4 @@ h5 {
 img {
   display: block;
   width: 100%;
-}
-
-.container {
-  width: 80%;
-  max-width: 1240px;
 }

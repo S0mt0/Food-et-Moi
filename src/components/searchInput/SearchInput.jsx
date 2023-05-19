@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 import { useGlobalContext } from "../../Context";
 
 import "./searchInput.css";
@@ -28,6 +29,10 @@ const SearchInput = () => {
       navigate(`/searched/${input.trim()}`);
       setHideDropDown(true);
     }
+  };
+
+  const removeSearch = () => {
+    setInput("");
   };
 
   // Function to display dropdown menu
@@ -95,6 +100,7 @@ const SearchInput = () => {
           ref={menuRef}
         />
         <FaSearch />
+        {input.trim() && <TiDelete className="delete" onClick={removeSearch} />}
         {renderSuggestions()}
       </div>
     </form>

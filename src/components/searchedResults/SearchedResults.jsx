@@ -61,7 +61,6 @@ const Searched = () => {
 
     return () => {
       isMounted = false;
-      // setSearchedMeals([]);
       setNoResult(false);
     };
   }, [id, setSearchedMeals, setNoResult, setLoading]);
